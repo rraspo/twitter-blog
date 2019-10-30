@@ -20,8 +20,8 @@ Homestead.json
 .rocketeer/
 
 # avoid generated content
-public/css/
-public/js/
+public/css/*
+public/js/*
 
 # IDE
 .vscode/
