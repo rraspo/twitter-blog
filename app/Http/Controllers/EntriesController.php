@@ -4,9 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Entry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EntriesController extends Controller
 {
+    /**
+     * Page size for entry index view
+     * 
+     * @var integer PAGE_SIZE
+     */
+    const PAGE_SIZE = 3;
+
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +27,9 @@ class EntriesController extends Controller
      */
     public function index()
     {
-        //
+        $user    = Auth::user()->load('entries');
+        $entries = $user->entries()->orderByDesc('created_at')->paginate(self::PAGE_SIZE);
+        return view('entries.index', compact('entries'));
     }
 
     /**
@@ -24,7 +39,7 @@ class EntriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('entries.create');
     }
 
     /**
@@ -35,7 +50,12 @@ class EntriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Entry::create([
+            'title'   => $request->title,
+            'content' => $request->content,
+            'user_id' => Auth::id()
+        ]);
+        return redirect()->route('entries.index');
     }
 
     /**
@@ -46,7 +66,7 @@ class EntriesController extends Controller
      */
     public function show(Entry $entry)
     {
-        //
+        return view('entries.show', compact('entry'));
     }
 
     /**
@@ -57,7 +77,8 @@ class EntriesController extends Controller
      */
     public function edit(Entry $entry)
     {
-        //
+        $this->authorize('update', $entry);
+        return view('entries.edit', compact('entry'));
     }
 
     /**
@@ -69,7 +90,9 @@ class EntriesController extends Controller
      */
     public function update(Request $request, Entry $entry)
     {
-        //
+        $entry->update($request->all());
+        $entry->save();
+        return redirect()->route('entries.show', ['entry_id' => $entry->id]);
     }
 
     /**
@@ -80,6 +103,7 @@ class EntriesController extends Controller
      */
     public function destroy(Entry $entry)
     {
-        //
+        Entry::delete($entry);
+        return redirect()->route('entries.index');
     }
 }

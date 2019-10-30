@@ -2,27 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Entry;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * Page size for homepage entry index
+     * 
+     * @var integer PAGE_SIZE
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    const PAGE_SIZE = 3;
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function login()
     {
-        return view('home');
+        return view('auth.login');
+    }
+
+    /**
+     * Show the application entries.
+     * 
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function home()
+    {
+        $entries = Entry::with('author')->orderByDesc('created_at')->paginate(self::PAGE_SIZE);
+        return view('welcome', compact('entries'));
     }
 }
