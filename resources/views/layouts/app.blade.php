@@ -10,9 +10,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -58,7 +55,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('entries.index') }}">
+                                <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">
                                     {{ __('My entries') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -82,5 +79,6 @@
         </main>
     </div>
 </body>
-
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
 </html>
