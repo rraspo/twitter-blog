@@ -58,6 +58,9 @@
                                 <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">
                                     {{ __('My entries') }}
                                 </a>
+                                <a class="dropdown-item" href="{{ route('users.edit', Auth::id()) }}">
+                                    {{ __('Edit my profile') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
