@@ -5,7 +5,6 @@
 use App\Entry;
 use App\User;
 use Faker\Generator as Faker;
-use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +18,11 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(Entry::class, function (Faker $faker) {
+    $users = User::all();
     return [
         'title'     => $faker->realText(20),
         'content'   => $faker->realText,
-        'user_id'   => User::all()->random(),
-        'image_url' => $faker->imageUrl()
+        'user_id'   => $users->random(),
+        'image_url' => $faker->imageUrl() ?? "https://loremflickr.com/240/240"
     ];
 });
