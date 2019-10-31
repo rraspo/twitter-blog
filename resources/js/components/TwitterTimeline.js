@@ -32,7 +32,7 @@ class TwitterTimeline extends Component {
     render() {
         this.tweets = this.state.tweets.map((tweet, key) =>
             <li className="list-group-item tweet" key={tweet.id || key}>
-                {tweet.text || tweet.message + " Not in Twitter."}
+                {tweet.text || tweet.message}
             </li>
         )
         return (
