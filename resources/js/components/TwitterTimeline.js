@@ -23,6 +23,7 @@ class TwitterTimeline extends Component {
                     tweets: response.data
                 })
                 console.log(response);
+                self.forceUpdate();
             })
             .catch(function (error) {
                 console.log(error);
@@ -30,11 +31,18 @@ class TwitterTimeline extends Component {
     }
 
     render() {
-        this.tweets = this.state.tweets.map((tweet, key) =>
-            <li className="list-group-item tweet" key={tweet.id || key}>
-                {tweet.text || tweet.message}
-            </li>
-        )
+        if(this.state.tweets.length > 0){
+            this.tweets = this.state.tweets.map((tweet, key) =>
+                <li className="list-group-item tweet" key={tweet.id || key}>
+                    {tweet.text || tweet.message}
+                </li>
+            )
+        } else {
+            this.tweets = 
+                <li className="list-group-item tweet">
+                    Not found or inaccessible.
+                </li>
+        }
         return (
             <div className="row justify-content-center">
                 <div className="col-md-12">
