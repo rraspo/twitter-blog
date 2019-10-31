@@ -36,6 +36,14 @@ npm run dev
 
 This will install frontend dependencies and allow you to actually see the website the way it is supposed to look.
 
+## Testing
+This project uses Laravel Dusk to run its tests, so all you have to do is run the following commands:
+
+```bash
+php artisan dusk:install
+php artisan dusk
+```
+
 ## Serving the site
 Since this is a Laravel project, the easiest way to serve it is by running:
 ```bash
