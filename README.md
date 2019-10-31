@@ -59,6 +59,7 @@ cp apache_twitter-blog.conf {path_to_apache}/sites-available/twitter-blog.local 
 Make sure to restart apache before trying to access the site.
 
 ### Nginx
+![Warning](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1") This nginx file config or setup has not yet been updated to protect you against latest [security vulnerabilities](https://thehackernews.com/2019/10/nginx-php-fpm-hacking.html).
 For Nginx, which is the one I use, we'll do something pretty similar, assuming you already added the `/etc/hosts` entry for our domain name and a valid nginx running conf.
 Let's copy the example conf file to nginx vhosts analog directory:
 ```bash
