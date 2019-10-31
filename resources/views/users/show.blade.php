@@ -2,25 +2,22 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
-                        {{ __('Entries') }}
+                        {{ __('Entries by') }} {{ $user->username }}
                     </h5>
                     <div class="card-body">
-                        somethings
+                        @include('entries.table')
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    asdfasdf
-                </div>
-            </div>
+            {{-- React component to handle Twitter API, see `resources/js/` --}}
+            <div id="twitter-timeline" data-user="{{ $user->toJson() }}"></div>
         </div>
     </div>
 </div>

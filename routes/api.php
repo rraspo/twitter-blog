@@ -12,4 +12,4 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::get('users/{user}/tweets', 'UsersController@tweets')->name('users.tweets');

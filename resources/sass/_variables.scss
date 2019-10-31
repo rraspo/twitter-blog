@@ -2,7 +2,7 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: "Nunito", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
@@ -17,3 +17,21 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+$twitter-blue: rgb(29, 161, 242);
+
+.twitter-container {
+  border: 0 !important;
+  .list-group-item:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+.twitter-card {
+  color: white;
+  background-color: $twitter-blue !important;
+}
+
+.tweet:hover {
+  background-color: rgba(160, 200, 220, 0.12);
+}
