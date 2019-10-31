@@ -24,7 +24,7 @@ and the app seeder.
 ```bash
 php artisan key:generate
 php artisan migrate
-php artisan seed
+php artisan db:seed
 ```
 
 Before we access our application, we need to run some commands to get the frontend running
