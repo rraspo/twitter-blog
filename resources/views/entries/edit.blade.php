@@ -5,7 +5,16 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Edit entry') }}</div>
+                <div class="card-header">
+                    {{ __('Edit entry') }}
+                    <div class="float-right">
+                        <form action="{{ route('entries.destroy', $entry->id) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button class="btn btn-danger">{{ __('Delete entry') }}</button>
+                        </form>
+                    </div>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('entries.store') }}">
@@ -47,7 +56,7 @@
                             <label for="image_url" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
 
                             <div class="col-md-6">
-                            <input id="image_url" type="text" class="form-control @error('image_url') is-invalid @enderror" name="image_url" value="{{ $entry->image_url }}" autofocus />
+                                <input id="image_url" type="text" class="form-control @error('image_url') is-invalid @enderror" name="image_url" value="{{ $entry->image_url }}" autofocus />
                                 @error('content')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

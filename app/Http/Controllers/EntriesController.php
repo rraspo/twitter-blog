@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class EntriesController extends Controller
 {
     /**
-     * Page size for entry index view
+     * Page size for entries
      * 
      * @var integer PAGE_SIZE
      */
@@ -29,7 +29,7 @@ class EntriesController extends Controller
     {
         $user    = Auth::user()->load('entries');
         $entries = $user->entries()->orderByDesc('created_at')->paginate(self::PAGE_SIZE);
-        return view('entries.index', compact('entries'));
+        return view('users.show', compact('user', 'entries'));
     }
 
     /**
@@ -50,12 +50,13 @@ class EntriesController extends Controller
      */
     public function store(Request $request)
     {
-        Entry::create([
+        $entry = Entry::create([
             'title'   => $request->title,
             'content' => $request->content,
-            'user_id' => Auth::id()
+            'user_id' => Auth::id(),
+            'image_url' => $request->image_url ?? NULL
         ]);
-        return redirect()->route('entries.index');
+        return redirect()->route('entries.show', $entry->id);
     }
 
     /**
@@ -90,6 +91,7 @@ class EntriesController extends Controller
      */
     public function update(Request $request, Entry $entry)
     {
+        $this->authorize('update', $entry);
         $entry->update($request->all());
         $entry->save();
         return redirect()->route('entries.show', ['entry_id' => $entry->id]);
@@ -103,7 +105,7 @@ class EntriesController extends Controller
      */
     public function destroy(Entry $entry)
     {
-        Entry::delete($entry);
+        $entry->delete();
         return redirect()->route('entries.index');
     }
 }
