@@ -30,4 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'twitter' => [
+        'consumer'        => env('TWITTER_CONSUMER'),
+        'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
+        'access'          => env('TWITTER_ACCESS'),
+        'access_secret'   => env('TWITTER_ACCESS_SECRET')
+    ]
+
 ];
