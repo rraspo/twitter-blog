@@ -15,11 +15,6 @@ class EntriesController extends Controller
      */
     const PAGE_SIZE = 3;
 
-    public function __construct()
-    {
-        return $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
