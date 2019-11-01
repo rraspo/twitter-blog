@@ -16,5 +16,6 @@ Auth::routes();
 Route::get('/', 'HomeController@home')->name('home');
 Route::get('/login', 'HomeController@login')->name('login');
 
-Route::resource('entries', 'EntriesController');
+Route::resource('entries', 'EntriesController')->except(['show', 'index'])->middleware('auth');
+Route::resource('entries', 'EntriesController')->only(['show', 'index']);
 Route::resource('users', 'UsersController');
