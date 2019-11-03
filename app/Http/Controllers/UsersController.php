@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Twitter\Client as TwitterClient;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -51,27 +50,5 @@ class UsersController extends Controller
         $user->update($request->all());
         $user->save();
         return redirect()->route('users.show', compact('user'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
-
-    public function tweets(User $user)
-    {
-        $client = new TwitterClient;
-        return $client->getTweets($user->twitter_username);
-    }
-
-    public function hideTweets(User $user, $tweets_ids)
-    {
-        
     }
 }
