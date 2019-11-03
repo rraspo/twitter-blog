@@ -12,4 +12,5 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('users/{user}/tweets', 'UsersController@tweets')->name('users.tweets');
+Route::get('tweets/{user}', 'tweetsController@tweets')->name('tweets.tweets');
+Route::get('tweets/{user}/toggle/{tweet}', 'tweetsController@toggleHide')->name('tweets.togglehide');
