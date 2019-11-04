@@ -1,5 +1,6 @@
 # The twitter-blog
-This project is a mix of a blog and a twitter feed. This is a coding challenge.
+This project was implemented using Laravel with react scaffolding.
+This project's functionality is a mix of a blog and a twitter feed. This is a coding challenge.
 
 ## Installation
 To run this project you'll need to run the following commands that will clone the project, cd into it, 
