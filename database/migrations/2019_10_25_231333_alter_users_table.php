@@ -15,7 +15,7 @@ class AlterUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->renameColumn('name', 'username');
-            $table->string('twitter_username');
+            $table->string('twitter_username')->nullable();
         });
     }
 
