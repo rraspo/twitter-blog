@@ -14,7 +14,7 @@ class TweetToggleTest extends DuskTestCase
      * 
      * @var integer WAIT_TIME
      */
-    const WAIT_TIME = 3000;
+    const WAIT_TIME = 4000;
 
     /**
      * User reference
@@ -40,18 +40,22 @@ class TweetToggleTest extends DuskTestCase
     {
         try {
             $this->setupTest();
-            $this->browse(function (Browser $browser) {
-                $browser->visit('/login')
+            $this->browse(function ($author, $reader) {
+                $author->visit('/login')
                     ->type('email', $this->user->email)
                     ->type('password', 'password')
                     ->press('Login')
                     ->pause(self::WAIT_TIME)
-                    ->assertSee('Newest user entries');
-                $browser->click('@user-menu')
-                    ->pause(self::WAIT_TIME)
+                    ->click('@user-menu')
                     ->click('@my-entries')
                     ->pause(self::WAIT_TIME)
-                    ->assertDontSee('Not found or inaccessible.');
+                    ->click('@toggle-anchor-0');
+                $hiddenTweetText = $author->text('@tweet-text-0');
+                $shownTweetText  = $author->text('@tweet-text-1');
+                $reader->visit("/users/{$this->user->id}")
+                    ->pause(self::WAIT_TIME)
+                    ->assertDontSee($hiddenTweetText)
+                    ->assertSee($shownTweetText);
             });
         } catch (\Throwable $th) {
             throw $th;

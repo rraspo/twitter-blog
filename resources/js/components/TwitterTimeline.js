@@ -56,7 +56,7 @@ class TwitterTimeline extends Component {
                     if (this.state.autheduser == this.state.user.id) {
                         const toggleText = tweet.hidden ? 'hidden' : 'shown'
                         anchor = 
-                            <a href="#!" onClick={() => { this.toggleTweet(this.state.autheduser, tweet) }} className={"badge float-right "+(tweet.hidden ? 'badge-danger': 'badge-primary')}>{toggleText}</a>
+                            <a dusk={"toggle-anchor-" + key} href="#!" onClick={() => { this.toggleTweet(this.state.autheduser, tweet) }} className={"badge float-right "+(tweet.hidden ? 'badge-danger': 'badge-primary')}>{toggleText}</a>
                     }
                     return (
                         <li className="list-group-item tweet" key={tweet.id || key}>
@@ -81,7 +81,7 @@ class TwitterTimeline extends Component {
                                 </div>
                             </div>
                             <div className="row no-gutters">
-                                <p className="card-text">
+                                <p dusk={"tweet-text-" + key} className="card-text">
                                     {tweet.text || tweet.message}
                                 </p>
                             </div>
