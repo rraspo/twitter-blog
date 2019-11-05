@@ -42,9 +42,10 @@ This project uses Laravel Dusk to run its tests, so all you have to do is run th
 
 ```bash
 php artisan dusk:install
+rm tests/Browser/ExampleTest.php
 php artisan dusk
 ```
-There will be 1 failure and this is due to the example case Laravel creates when running `php artisan dusk:install`, however we still need this command since it will download Chrome Browser drivers.
+These commands will install and run the automated browser tests. Should return no errors.
 
 ## Serving the site
 Since this is a Laravel project, the easiest way to serve it is by running:
