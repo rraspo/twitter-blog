@@ -40,28 +40,28 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a dusk="login" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a dusk="register" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         @endif
                         @else
-                        <a class="nav-link text-primary" href="{{ route('entries.create') }}">{{ __('New entry') }}</a>
+                        <a dusk="new-entry" class="nav-link text-primary" href="{{ route('entries.create') }}">{{ __('New entry') }}</a>
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a dusk="user-menu" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Welcome, {{ Auth::user()->username }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">
+                                <a dusk="my-entries" class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">
                                     {{ __('My entries') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('users.edit', Auth::id()) }}">
                                     {{ __('Edit my profile') }}
                                 </a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a dusk="logout" class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>

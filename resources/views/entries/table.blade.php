@@ -16,7 +16,7 @@
                         <a href="{{ route('entries.edit', $entry->id) }}" class="float-right badge badge-primary">{{ __('Edit') }}</a>
                     @endcan
                     <small class="text-muted">
-                        <a class="text-black-50" href="{{ route('users.show', $entry->author) }}">
+                        <a dusk="author-link" class="text-black-50" href="{{ route('users.show', $entry->author) }}">
                             {{ __('by') }} {{ $entry->author->username }}
                         </a>
                     </small>
